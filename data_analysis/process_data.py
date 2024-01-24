@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-sd = pd.read_csv('data/stock_price.csv')
+sd = pd.read_csv('data/google_stock_price.csv')
 sd.head()
 sd["Date"] = pd.to_datetime(sd.Date, format="%Y-%m-%d")
 sd.index = sd['Date']

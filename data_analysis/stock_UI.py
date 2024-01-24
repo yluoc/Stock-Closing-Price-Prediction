@@ -1,6 +1,6 @@
 import dash
-import dash_core_components as dcc
-import dash_html_components as dhc
+from dash import dcc
+from dash import html
 import pandas as pd
 import numpy as np
 import pickle
@@ -75,12 +75,12 @@ Front-end UI
 pred_app = dash.Dash()
 server = pred_app.server
 
-pred_app.layout = dhc.Div([
-    dhc.H1("stock price analysis dashtable", style = {"textAlign": "center"}),
+pred_app.layout = html.Div([
+    html.H1("stock price analysis dashtable", style = {"textAlign": "center"}),
     dcc.Tabs(id = "tabs", children=[
         dcc.Tab(label='Google stock data', children=[
-            dhc.Div([
-                dhc.H2("actual closing stock price", style={"textAlign": "center"}),
+            html.Div([
+                html.H2("actual closing stock price", style={"textAlign": "center"}),
                 dcc.Graph(
                     id = "actual data",
                     figure = {
@@ -98,7 +98,7 @@ pred_app.layout = dhc.Div([
                         )
                     }
                 ),
-                dhc.H1("Linear Regression Predicted Closing Price", style = {"textAlign": "center"}),
+                html.H1("Linear Regression Predicted Closing Price", style = {"textAlign": "center"}),
                 dcc.Graph(
                     id = "LR predicted data",
                     figure = {
@@ -116,7 +116,7 @@ pred_app.layout = dhc.Div([
                         )
                     }
                 ),
-                dhc.H1("LSTM Predicted Closing Price", style={"textAlign": "center"}),
+                html.H1("LSTM Predicted Closing Price", style={"textAlign": "center"}),
                 dcc.Graph(
                     id = "LSTM predicted data",
                     figure = {
@@ -135,6 +135,33 @@ pred_app.layout = dhc.Div([
                     }
                 )
             ])
+        ]),
+        dcc.Tab(label = 'Google Stock Data', children = [
+            html.Div([
+                html.H1('Google Stock High vs Low',
+                        style = {'textAlign': 'center'}),
+                dcc.Dropdown(id = 'my-dropdown',
+                             options = [{'label': 'Google', 'value': 'GOOGL'},
+                                        {'label': 'Tesla', 'value': 'TSLA'},
+                                        {'label': 'Apple', 'value': 'AAPL'},
+                                        {'label': 'Facebook', 'value': 'FB'},
+                                        {'label': 'Microsoft', 'value': 'MSFT'}],
+                            multi = True, value = ['GOOGL'],
+                            style = {'display': 'block', 'margin-left': 'auto',
+                                     'margin-right': 'auto', 'width': '60%'}),
+                dcc.Graph(id = 'highlow'),
+                html.H1("Google Market Volume", style = {'textAlign': 'center'}),
+                dcc.Dropdown(id = 'my-dropdown2',
+                             options = [{'label': 'Google', 'value': 'GOOGL'},
+                                        {'label': 'Tesla', 'value': 'TSLA'},
+                                        {'label': 'Apple', 'value': 'AAPL'},
+                                        {'label': 'Facebook', 'value': 'FB'},
+                                        {'label': 'Microsoft', 'value': 'MSFT'}],
+                            multi = True, value = ['GOOGL'],
+                            style = {'display': 'block', 'marign-left': 'auto',
+                                     'marign-right': 'auto', 'width': '60%'}),
+                dcc.Graph(id = 'volume')
+            ], className = 'container'),
         ])
     ])
 ])
