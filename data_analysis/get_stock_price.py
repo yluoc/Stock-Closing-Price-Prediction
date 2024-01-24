@@ -2,7 +2,7 @@ import yfinance as yf
 
 google_stockSymbol = 'GOOGL'
 tesla_stockSymbol = 'TSLA'
-facebook_stockSymbol = 'FB'
+facebook_stockSymbol = 'META'
 microsoft_stockSymbol = 'MSFT'
 apple_stockSymbol = 'AAPL'
 
