@@ -79,3 +79,9 @@ new_tesla_database = pd.DataFrame(index = range(0, len(tesla_stock)), columns = 
 for i in range(0, len(facebook_data)):
     new_tesla_database['Date'][i] = tesla_data['Date'][i]
     new_tesla_database['Close'][i] = tesla_data['Close'][i]
+
+processed_database = {'apple': new_apple_database, 
+                      'facebook': new_facebook_database, 
+                      'google': new_google_database, 
+                      'microsoft': new_microsoft_database, 
+                      'tesla': new_tesla_database}
